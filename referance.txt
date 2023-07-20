@@ -1,0 +1,6 @@
+Main_project:
+
+
+data base to delete or truncate table with forignkey:
+SET FOREIGN_KEY_CHECKS = 0;
+and than detete or truncate

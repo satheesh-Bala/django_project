@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script src="static/js/scripts_add_item.js"></script>
+    <title>Product Form</title>
+    <link rel="stylesheet" href="static/css/style_add_item.css">
+</head>
+
+<body>
+    <h1>Add Product</h1>
+    <form action="upload" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="sku">SKU:</label>
+        <input type="text" id="sku" name="sku" value="{{ sku }}" required disabled><br><br>
+
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" onchange="toggleOtherCategory(this.value);" required>
+            <option value="">Select a category</option>
+            {% for category in categories %}
+            <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <div id="otherCategoryContainer" style="display: none;">
+            <label for="otherCategory">Other Category:</label>
+            <input type="text" id="otherCategory" name="otherCategory">
+        </div>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required><br><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" required><br><br>
+
+        <label for="manufacturer">Manufacturer:</label>
+        <input type="text" id="manufacturer" name="manufacturer" required><br><br>
+
+        <label for="vendor">Vendor Name:</label>
+        <input type="text" id="vendor" name="vendor" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="images">Images:</label>
+        <input type="file" id="images" name="images[]" multiple><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

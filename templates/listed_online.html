@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Product Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="static/js/scripts_fetch_sku.js"></script>
+    <link rel="stylesheet" href="static/css/style_listed_online.css">
+
+</head>
+
+<body>
+    <form method="POST" action="process_form.php">
+        <fieldset>
+            <legend>Product Information</legend>
+
+            <label for="sku">SKU:</label>
+            <input type="text" id="skuInput" onfocus="expandCombobox()" placeholder="Enter SKU" required>
+            <select id="sku" style="display: none;" onchange="updateFields()">
+                <option value="">Select SKU</option>
+            </select>
+            <button type="button" onclick="searchSKU()">Search</button>
+
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="listedSite">Listed Site:</label>
+            <select id="listedSite" name="listedSite" required>
+                {% for sites in listedSite %}
+                <option value="{{ sites.name }}">{{ sites.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="productTitle">Product Title:</label>
+            <input type="text" id="productTitle" name="productTitle" required>
+
+            <label for="productID">Product ID:</label>
+            <input type="text" id="productID" name="productID" required>
+
+            <label for="listedCategory">Listed Category:</label>
+            <input type="text" id="listedCategory" name="listedCategory" required>
+
+            <label for="listedPrice">Listed Price:</label>
+            <input type="number" id="listedPrice" name="listedPrice" required>
+
+            <label for="buyedPrice">Buyed Price:</label>
+            <input type="number" id="buyedPrice" name="buyedPrice" required>
+
+            <label for="quantityPerOrder">Product Quantity per Pack:</label>
+            <input type="number" id="quantityPerOrder" name="quantityPerOrder" required>
+
+            <label for="dimensionsBefore">Dimensions Before Packing (L x W x H) in CM:</label>
+            <div class="dimensions-container">
+                <input type="number" id="lengthBefore" name="lengthBefore" step="0.01" required
+                    style="width: 50px; height: 20px;">
+                <span class="dimension-separator">x</span>
+                <input type="number" id="widthBefore" name="widthBefore" step="0.01" required
+                    style="width: 50px; height: 20px;">
+                <span class="dimension-separator">x</span>
+                <input type="number" id="heightBefore" name="heightBefore" step="0.01" required
+                    style="width: 50px; height: 20px;">
+            </div>
+
+            <label for="dimensionsAfter">Dimensions After Packing (L x W x H) in CM:</label>
+            <div class="dimensions-container">
+                <input type="number" id="lengthAfter" name="lengthAfter" step="0.01" required
+                    style="width: 50px; height: 20px;">
+                <span class="dimension-separator">x</span>
+                <input type="number" id="widthAfter" name="widthAfter" step="0.01" required
+                    style="width: 50px; height: 20px;">
+                <span class="dimension-separator">x</span>
+                <input type="number" id="heightAfter" name="heightAfter" step="0.01" required
+                    style="width: 50px; height: 20px;">
+            </div>
+
+            <label for="weightBefore">Weight Before Packing in KG:</label>
+            <input type="number" id="weightBefore" name="weightBefore" step="0.01" required>
+
+            <label for="weightAfter">Weight After Packing in KG:</label>
+            <input type="number" id="weightAfter" name="weightAfter" step="0.01" required>
+
+            <label for="uploadedImages">Uploaded Images for Listing:</label>
+            <input type="file" id="uploadedImages" name="uploadedImages[]" multiple>
+        </fieldset>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
